@@ -1,0 +1,46 @@
+---
+# Make sure PHP version is set.
+- name: Define PHP version to install
+  set_fact:
+    php_version: 7.1
+  when: php_version == ''
+
+# Make sure web server deamon is set.
+- name: Define web server deamon
+  set_fact:
+    php_web_server_deamon: apache2
+  when: php_web_server_deamon == ''
+
+# Add the main PPA for PHP. See https://launchpad.net/~ondrej/+archive/ubuntu/php
+- name: Add the main PPA for PHP
+  apt_repository:
+    repo: ppa:ondrej/php
+    state: present
+    update_cache: yes
+
+# Install PHP.
+- name: Install PHP
+  apt:
+    name: php{{ php_version }}
+    state: latest
+    update_cache: yes
+    cache_valid_time: 86400
+  notify:
+    - Restart web server
+
+# Install PHP extensions.
+- name: Install PHP extensions
+  apt:
+    name: php{{ php_version }}-{{ item }}
+    state: latest
+  with_items:
+    "{{ php_extensions }}"
+  notify:
+    - Restart web server
+
+# Configure PHP.
+- include: configure_php.yml
+  with_items:
+    "{{ php_configuration }}"
+  loop_control:
+    loop_var: php_configuration_section

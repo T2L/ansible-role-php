@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: true
+  roles:
+    - ansible-role-php
+  vars:
+    php_version: 7.0
+    php_extensions:
+      - json
+    php_configuration:
+      Date:
+        date.timezone: Europe/Kiev
+      PHP:
+        memory_limit: 256M
