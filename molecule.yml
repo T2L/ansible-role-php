@@ -1,0 +1,16 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+docker:
+  containers:
+    - name: ansible-role-php
+      image: ubuntu
+      image_version: '14.04'
+      required: True
+      privileged: True
+      ansible_groups:
+        - group1
+verifier:
+  name: testinfra
