@@ -8,6 +8,9 @@ php_extensions: []
 # Configure PHP.
 php_configuration: {}
 
+# Configure PHP CLI.
+php_configuration_cli: {}
+
 # Web server deamon to restart (defaults to Apache 2).
 php_web_server_deamon: apache2
 

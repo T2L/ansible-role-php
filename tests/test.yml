@@ -12,3 +12,6 @@
         date.timezone: Europe/Kiev
       PHP:
         memory_limit: 256M
+    php_configuration_cli:
+      Date:
+        date.timezone: Europe/Kiev
