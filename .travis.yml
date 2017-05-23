@@ -1,9 +1,9 @@
 ---
-language: python
-python: "2.7"
-
-# Use the new container infrastructure.
 sudo: required
+
+language: python
+
+cache: pip
 
 services:
   - docker
