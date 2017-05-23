@@ -1,5 +1,7 @@
 # Ansible Role: PHP
 
+[![Build Status](https://travis-ci.org/T2L/ansible-role-php.svg?branch=1.x.x)](https://travis-ci.org/T2L/ansible-role-php)
+
 Installs PHP.
 
 ## Requirements
