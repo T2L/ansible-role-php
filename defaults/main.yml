@@ -9,10 +9,10 @@ php_extensions: []
 php_configuration: {}
 
 # Configure PHP CLI.
-php_configuration_cli: {}
+php_cli_configuration: {}
 
-# Web server deamon to restart (defaults to Apache 2).
-php_web_server_deamon: apache2
+# Web server daemon to restart (defaults to Apache 2).
+php_web_server_daemon: apache2
 
 # Boolean indicating whether to restart web server or not.
 php_restart_web_server: true

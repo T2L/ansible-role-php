@@ -58,6 +58,6 @@
 # Configure PHP CLI.
 - include: configure_php_cli.yml
   with_items:
-    "{{ php_configuration_cli }}"
+    "{{ php_cli_configuration }}"
   loop_control:
-    loop_var: php_configuration_cli_section
+    loop_var: php_cli_configuration_section

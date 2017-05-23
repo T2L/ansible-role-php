@@ -1,11 +1,11 @@
 ---
 # Configure PHP CLI.
-- name: Configure PHP CLI, section {{ php_configuration_cli_section }}
+- name: Configure PHP CLI, section {{ php_cli_configuration_section }}
   ini_file:
     dest: /etc/php/{{ php_version }}/cli/php.ini
-    section: "{{ php_configuration_cli_section }}"
+    section: "{{ php_cli_configuration_section }}"
     option: "{{ item.key }}"
     value: "{{ item.value }}"
     state: present
   with_dict:
-    "{{ php_configuration_cli[php_configuration_cli_section] }}"
+    "{{ php_cli_configuration[php_cli_configuration_section] }}"

@@ -2,7 +2,7 @@
 # Restart web server.
 - name: Restart web server
   service:
-    name: "{{ php_web_server_deamon }}"
+    name: "{{ php_web_server_daemon }}"
     state: restarted
   when:
-    php_restart_web_server and php_web_server_deamon != ''
+    php_restart_web_server and php_web_server_daemon != ''
