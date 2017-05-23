@@ -5,11 +5,11 @@
     php_version: 7.1
   when: php_version == ''
 
-# Make sure web server deamon is set.
-- name: Define web server deamon
+# Make sure web server daemon is set.
+- name: Define web server daemon
   set_fact:
-    php_web_server_deamon: apache2
-  when: php_web_server_deamon == ''
+    php_web_server_daemon: apache2
+  when: php_web_server_daemon == ''
 
 # Ensure base packages are present.
 - name: Install base packages
