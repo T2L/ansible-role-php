@@ -3,7 +3,7 @@
 - name: Configure PHP CLI, section {{ php_configuration_cli_section }}
   ini_file:
     dest: /etc/php/{{ php_version }}/cli/php.ini
-    section: "{{ php_configuration_section }}"
+    section: "{{ php_configuration_cli_section }}"
     option: "{{ item.key }}"
     value: "{{ item.value }}"
     state: present
