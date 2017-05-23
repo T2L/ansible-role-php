@@ -11,6 +11,16 @@
     php_web_server_deamon: apache2
   when: php_web_server_deamon == ''
 
+# Ensure base packages are present.
+- name: Install base packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+    cache_valid_time: 86400
+  with_items:
+    - software-properties-common
+
 # Add the main PPA for PHP. See https://launchpad.net/~ondrej/+archive/ubuntu/php
 - name: Add the main PPA for PHP
   apt_repository:
@@ -22,7 +32,7 @@
 - name: Install PHP
   apt:
     name: php{{ php_version }}
-    state: latest
+    state: present
     update_cache: yes
     cache_valid_time: 86400
   notify:
@@ -32,7 +42,7 @@
 - name: Install PHP extensions
   apt:
     name: php{{ php_version }}-{{ item }}
-    state: latest
+    state: present
   with_items:
     "{{ php_extensions }}"
   notify:
