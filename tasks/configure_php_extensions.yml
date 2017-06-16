@@ -1,0 +1,31 @@
+---
+
+# Determine correct ini file to use.
+
+# First loop over possible ini files and get stats.
+- name: Find candidates for {{ php_extension_configuration }} extension ini file
+  stat:
+    path: /etc/php/{{ php_version }}/{{ php_web_server_daemon }}/conf.d/{{ item }}-{{ php_extension_configuration }}.ini
+  register: php_extenstion_ini_file_candidates
+  # Let's be sloppy here. Assume that possible priorities are 10, 15 and 20.
+  with_items: [10, 15, 20]
+
+# Then pick the ini file that actually exists.
+- name: Pick correct {{ php_extension_configuration }} extension ini file
+  set_fact:
+    php_extension_ini_file: "{{ item.stat.path }}"
+  with_items:
+    "{{ php_extenstion_ini_file_candidates.results }}"
+  when:
+    item.stat | default(false) and item.stat.exists
+
+# Configure PHP extension.
+- name: Configure {{ php_extension_configuration }} extension
+  ini_file:
+    dest: "{{ php_extension_ini_file }}"
+    section: null
+    option: "{{ item.key }}"
+    value: "{{ item.value }}"
+    state: present
+  with_dict:
+    "{{ php_extensions_configuration[php_extension_configuration] }}"

@@ -1,6 +1,6 @@
 # Ansible Role: PHP
 
-[![Build Status](https://travis-ci.org/T2L/ansible-role-php.svg?branch=1.x.x)](https://travis-ci.org/T2L/ansible-role-php)
+[![Build Status](https://travis-ci.org/T2L/ansible-role-php.svg?branch=1.1.0)](https://travis-ci.org/T2L/ansible-role-php)
 
 Installs PHP on Ubuntu LTS using [The main PPA for PHP](https://launchpad.net/~ondrej/+archive/ubuntu/php).
 
@@ -39,6 +39,20 @@ Example:
         upload_max_filesize: 64M
         post_max_size: 512M
 
+PHP extensions which use own ini files should be configured using (not all extensions actually do that). Actually some of them uses main php.ini for storing configuration (e.g. opcache):
+
+    php_extensions_configuration: {}
+
+This variable follows the same format as main one described above (nested dictionary), except section represent the extension itself.
+
+Example:
+
+    php_extensions_configuration:
+      ldap:
+        ldap.max_links: 5
+      xdebug:
+        xdebug.remote_enable: 'On'
+
 Web server daemon. Will be restarted when change in configuration is detected. Defaults to Apache 2:
 
     php_web_server_daemon: apache2
@@ -64,3 +78,7 @@ MIT
 ## Author Information
 
 This role was created in 2017 by Roman Paska.
+
+## Changelog
+
+Changelog can be found here [CHANGELOG.md](CHANGELOG.md)

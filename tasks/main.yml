@@ -61,3 +61,10 @@
     "{{ php_cli_configuration }}"
   loop_control:
     loop_var: php_cli_configuration_section
+
+# Configure PHP extensions.
+- include: configure_php_extensions.yml
+  with_items:
+    "{{ php_extensions_configuration }}"
+  loop_control:
+    loop_var: php_extension_configuration

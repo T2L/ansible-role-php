@@ -7,11 +7,15 @@
     php_version: 7.0
     php_extensions:
       - json
+      - xdebug
     php_configuration:
       Date:
         date.timezone: Europe/Kiev
       PHP:
         memory_limit: 256M
-    php_configuration_cli:
+    php_cli_configuration:
       Date:
         date.timezone: Europe/Kiev
+    php_extensions_configuration:
+      xdebug:
+        xdebug.remote_enable: 'On'

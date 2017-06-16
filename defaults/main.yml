@@ -11,6 +11,9 @@ php_configuration: {}
 # Configure PHP CLI.
 php_cli_configuration: {}
 
+# Configure PHP extensions.
+php_extensions_configuration: {}
+
 # Web server daemon to restart (defaults to Apache 2).
 php_web_server_daemon: apache2
 
