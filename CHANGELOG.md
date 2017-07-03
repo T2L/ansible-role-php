@@ -1,4 +1,6 @@
-## Ansible Role: PHP 1.x.x
+## Ansible Role: PHP 1.1.1, 2017-07-03
+
+- Fix broken Travis CI (Package 'docker-engine' has no installation candidate)
 
 ## Ansible Role: PHP 1.1.0, 2017-06-16
 
