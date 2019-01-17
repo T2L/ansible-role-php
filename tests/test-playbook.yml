@@ -2,6 +2,14 @@
 - hosts: all
   become: true
 
+  pre_tasks:
+
+    - name: Ensure Ansible temp directory exists
+      file:
+        path: /tmp/ansible
+        state: directory
+        mode: 0777
+
   roles:
     - ansible-role-php
 
