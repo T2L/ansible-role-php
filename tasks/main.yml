@@ -41,6 +41,7 @@
   shell: "echo php{{ php_version }}-{{ item }}"
   register: php_extenstions_names
   loop: "{{ php_extensions | flatten(levels=1) }}"
+  changed_when: false
   # Skip Ansible Lint check, as this cannot be achieved in another way.
   args:
     warn: false
