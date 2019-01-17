@@ -1,5 +1,7 @@
 ## Ansible Role: PHP 1.x.x
 
+- [GH-2](https://github.com/T2L/ansible-role-php/issues/2) - Fix deprecation warning regarding running apt using a loop (Ansible 2.7+)
+
 ## Ansible Role: PHP 1.1.1, 2017-07-03
 
 - Fix broken Travis CI (Package 'docker-engine' has no installation candidate)
