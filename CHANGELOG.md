@@ -1,4 +1,4 @@
-## Ansible Role: PHP 1.x.x
+## Ansible Role: PHP 1.1.2, 2019-01-17
 
 - [GH-2](https://github.com/T2L/ansible-role-php/issues/2) - Fixed deprecation warning regarding running apt using a loop (Ansible 2.7+)
 - [GH-4](https://github.com/T2L/ansible-role-php/issues/4) - Updated Travis.CI configuration

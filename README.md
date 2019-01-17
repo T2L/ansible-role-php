@@ -1,6 +1,6 @@
 # Ansible Role: PHP
 
-[![Build Status](https://travis-ci.org/T2L/ansible-role-php.svg?branch=1.x.x)](https://travis-ci.org/T2L/ansible-role-php)
+[![Build Status](https://travis-ci.org/T2L/ansible-role-php.svg?branch=1.1.2)](https://travis-ci.org/T2L/ansible-role-php)
 
 Installs PHP on Ubuntu LTS using [The main PPA for PHP](https://launchpad.net/~ondrej/+archive/ubuntu/php).
 
@@ -77,7 +77,7 @@ MIT
 
 ## Author Information
 
-This role was created in 2017 by Roman Paska.
+This role was created in 2017-2019 by Roman Paska.
 
 ## Changelog
 
