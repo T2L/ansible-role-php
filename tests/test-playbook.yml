@@ -1,10 +1,20 @@
 ---
 - hosts: all
-  remote_user: root
+  become: true
+
+  pre_tasks:
+
+    - name: Ensure Ansible temp directory exists
+      file:
+        path: /tmp/ansible
+        state: directory
+        mode: 0777
+
   roles:
     - ansible-role-php
+
   vars:
-    php_version: 7.0
+    php_version: 7.2
     php_extensions:
       - json
       - xdebug

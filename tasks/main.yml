@@ -14,12 +14,11 @@
 # Ensure base packages are present.
 - name: Install base packages
   apt:
-    name: "{{ item }}"
+    name:
+      - software-properties-common
     state: present
     update_cache: yes
     cache_valid_time: 86400
-  with_items:
-    - software-properties-common
 
 # Add the main PPA for PHP. See https://launchpad.net/~ondrej/+archive/ubuntu/php
 - name: Add the main PPA for PHP
@@ -38,13 +37,17 @@
   notify:
     - Restart web server
 
+- name: Generate list of PHP extensions names to install
+  command: "echo php{{ php_version }}-{{ item }}"
+  register: php_extenstions_names
+  loop: "{{ php_extensions | flatten(levels=1) }}"
+  changed_when: false
+
 # Install PHP extensions.
 - name: Install PHP extensions
   apt:
-    name: php{{ php_version }}-{{ item }}
+    name: "{{ php_extenstions_names.results | map(attribute='stdout') | list }}"
     state: present
-  with_items:
-    "{{ php_extensions }}"
   notify:
     - Restart web server
 
