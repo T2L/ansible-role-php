@@ -1,10 +1,12 @@
 ---
 - hosts: all
-  remote_user: root
+  become: true
+
   roles:
     - ansible-role-php
+
   vars:
-    php_version: 7.0
+    php_version: 7.2
     php_extensions:
       - json
       - xdebug
