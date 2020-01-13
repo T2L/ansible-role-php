@@ -5,7 +5,7 @@ jobs:
   include:
     - &Test
 
-      name: Ubuntu 14.04 / Ansible 2.7 / PHP 7.2
+      name: Ubuntu 16.04 / Ansible 2.7 / PHP 7.2
 
       os: linux
 
@@ -18,7 +18,7 @@ jobs:
 
       python: 3.6
 
-      env: MOLECULE_PLATFORM=ubuntu:14.04 ANSIBLE_VERSION=2.7.* PHP_VERSION=7.2
+      env: MOLECULE_PLATFORM=ubuntu:16.04 ANSIBLE_VERSION=2.7.* PHP_VERSION=7.2
 
       install:
         - pip install ansible==${ANSIBLE_VERSION} docker molecule
@@ -30,7 +30,7 @@ jobs:
 
       name: Ubuntu 16.04 / Ansible 2.8 / PHP 7.3
 
-      env: MOLECULE_PLATFORM=ubuntu:18.04 ANSIBLE_VERSION=2.8.* PHP_VERSION=7.3
+      env: MOLECULE_PLATFORM=ubuntu:16.04 ANSIBLE_VERSION=2.8.* PHP_VERSION=7.3
 
     - <<: *Test
 
