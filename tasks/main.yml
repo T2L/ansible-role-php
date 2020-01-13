@@ -25,6 +25,11 @@
   notify:
     - Restart web server
 
+- name: Set default PHP version for the CLI
+  alternatives:
+    name: php
+    path: "/usr/bin/php{{ php_version }}"
+
 - name: Generate list of PHP extensions names to install
   command: "echo php{{ php_version }}-{{ item }}"
   register: php_extenstions_names
@@ -38,6 +43,11 @@
     state: present
   notify:
     - Restart web server
+
+# Configure Apache2 web server.
+- include: configure_apache2.yml
+  when:
+    php_web_server_daemon == "apache2"
 
 # Configure PHP.
 - include: configure_php.yml
