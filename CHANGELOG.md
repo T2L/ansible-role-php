@@ -1,3 +1,7 @@
+## Ansible Role: PHP 1.x.x
+
+- [GH-8](https://github.com/T2L/ansible-role-php/issues/8) - Apache2 and CLI will be using a proper PHP version upon changing the one
+
 ## Ansible Role: PHP 1.1.2, 2019-01-17
 
 - [GH-2](https://github.com/T2L/ansible-role-php/issues/2) - Fixed deprecation warning regarding running apt using a loop (Ansible 2.7+)

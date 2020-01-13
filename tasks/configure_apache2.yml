@@ -1,0 +1,25 @@
+---
+- name: Get the current PHP version for Apache2
+  shell: |
+    set -o pipefail
+    ls /etc/apache2/mods-enabled/ |
+    grep -oP 'php(\d\.\d)\.load' |
+    grep -oP '\d\.\d'
+  args:
+    executable: /bin/bash
+  register: php_apache2_version
+  changed_when: false
+
+- name: Disable the current PHP version for Apache2 (if exists)
+  apache2_module:
+    name: php{{ php_apache2_version.stdout }}
+    state: absent
+  when:
+    php_apache2_version.stdout and php_apache2_version.stdout != php_version | string
+
+- name: Enable a new PHP version for Apache2
+  apache2_module:
+    name: php{{ php_version }}
+    state: present
+  notify:
+    - Restart web server
