@@ -1,23 +1,11 @@
 ---
-# Make sure PHP version is set.
-- name: Define PHP version to install
-  set_fact:
-    php_version: 7.1
-  when: php_version == ''
-
-# Make sure web server daemon is set.
-- name: Define web server daemon
-  set_fact:
-    php_web_server_daemon: apache2
-  when: php_web_server_daemon == ''
-
 # Ensure base packages are present.
 - name: Install base packages
   apt:
     name:
       - software-properties-common
     state: present
-    update_cache: yes
+    update_cache: true
     cache_valid_time: 86400
 
 # Add the main PPA for PHP. See https://launchpad.net/~ondrej/+archive/ubuntu/php
@@ -25,14 +13,14 @@
   apt_repository:
     repo: ppa:ondrej/php
     state: present
-    update_cache: yes
+    update_cache: true
 
 # Install PHP.
 - name: Install PHP
   apt:
     name: php{{ php_version }}
     state: present
-    update_cache: yes
+    update_cache: true
     cache_valid_time: 86400
   notify:
     - Restart web server
