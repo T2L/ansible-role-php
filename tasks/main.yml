@@ -1,16 +1,4 @@
 ---
-# Make sure PHP version is set.
-- name: Define PHP version to install
-  set_fact:
-    php_version: 7.1
-  when: php_version == ''
-
-# Make sure web server daemon is set.
-- name: Define web server daemon
-  set_fact:
-    php_web_server_daemon: apache2
-  when: php_web_server_daemon == ''
-
 # Ensure base packages are present.
 - name: Install base packages
   apt:
