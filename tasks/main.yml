@@ -17,7 +17,7 @@
     name:
       - software-properties-common
     state: present
-    update_cache: yes
+    update_cache: true
     cache_valid_time: 86400
 
 # Add the main PPA for PHP. See https://launchpad.net/~ondrej/+archive/ubuntu/php
@@ -25,14 +25,14 @@
   apt_repository:
     repo: ppa:ondrej/php
     state: present
-    update_cache: yes
+    update_cache: true
 
 # Install PHP.
 - name: Install PHP
   apt:
     name: php{{ php_version }}
     state: present
-    update_cache: yes
+    update_cache: true
     cache_valid_time: 86400
   notify:
     - Restart web server
