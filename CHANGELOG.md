@@ -1,3 +1,7 @@
+## Ansible Role: PHP 1.x.x
+
+- [GH-5](https://github.com/T2L/ansible-role-php/issues/5) - Bump the default PHP version to 7.3 (for real)
+
 ## Ansible Role: PHP 1.2.0, 2020-01-13
 
 - [GH-5](https://github.com/T2L/ansible-role-php/issues/5) - Bump the default PHP version to 7.3

@@ -14,7 +14,7 @@ Available variables are listed below, along with default values (see [defaults/m
 
 PHP version to install:
 
-    php_version: 7.3
+    php_version: '7.3'
 
 PHP extensions to install. Specify naked extension names (i.e. do not include PHP version), for example `mbstring`:
 
