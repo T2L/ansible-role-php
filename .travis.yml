@@ -6,8 +6,6 @@ branches:
 
 jobs:
   fast_finish: true
-  allow_failures:
-    - env: MOLECULE_PLATFORM=ubuntu:20.04 ANSIBLE_VERSION=2.9.* PHP_VERSION=7.4
 
   include:
     - &Test
