@@ -1,6 +1,6 @@
 # Ansible Role: PHP
 
-[![Build Status](https://travis-ci.org/T2L/ansible-role-php.svg?branch=1.2.1)](https://travis-ci.org/T2L/ansible-role-php)
+[![Build Status](https://travis-ci.org/T2L/ansible-role-php.svg?branch=1.3.0)](https://travis-ci.org/T2L/ansible-role-php)
 
 Installs PHP on Ubuntu LTS using [The main PPA for PHP](https://launchpad.net/~ondrej/+archive/ubuntu/php).
 
