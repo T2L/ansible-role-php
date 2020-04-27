@@ -1,3 +1,7 @@
+## Ansible Role: PHP (unreleased)
+
+- [#13](https://github.com/T2L/ansible-role-php/issues/13) - Add Molecule 3 support
+
 ## Ansible Role: PHP 1.2.1, 2020-01-14
 
 - [GH-11](https://github.com/T2L/ansible-role-php/issues/11) - Run Travis on 1.x.x, tagged releases and PR only
