@@ -1,13 +1,10 @@
 ---
 driver:
   name: docker
-lint:
-  name: yamllint
-  options:
-    config-data:
-      extends: default
-      rules:
-        line-length: disable
+lint: |
+  set -e
+  yamllint --config-data "{extends: default, rules: {line-length: disable}}" .
+  ansible-lint
 platforms:
   - name: draft
     image: "${MOLECULE_PLATFORM}"
@@ -31,5 +28,3 @@ provisioner:
     group_vars:
       all:
         php_version: ${PHP_VERSION}
-  lint:
-    name: ansible-lint
