@@ -1,5 +1,6 @@
 ## Ansible Role: PHP (unreleased)
 
+- [#14](https://github.com/T2L/ansible-role-php/issues/14) - Add Ubuntu 20.04 support (testing with PHP 7.4)
 - [#13](https://github.com/T2L/ansible-role-php/issues/13) - Add Molecule 3 support
 
 ## Ansible Role: PHP 1.2.1, 2020-01-14
