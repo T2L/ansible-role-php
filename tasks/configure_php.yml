@@ -1,5 +1,12 @@
 ---
 # Configure PHP.
+- name: Get /etc/php/{{ php_version }}/{{ php_web_server_daemon }}/php.ini permissions
+  stat:
+    path: /etc/php/{{ php_version }}/{{ php_web_server_daemon }}/php.ini
+    get_checksum: false
+    get_mime: false
+  register: php_ini_stat
+
 - name: Configure PHP, section {{ php_configuration_section }}
   ini_file:
     dest: /etc/php/{{ php_version }}/{{ php_web_server_daemon }}/php.ini
@@ -7,6 +14,7 @@
     option: "{{ item.key }}"
     value: "{{ item.value }}"
     state: present
+    mode: "{{ php_ini_stat.stat.mode }}"
   with_dict:
     "{{ php_configuration[php_configuration_section] }}"
   notify:

@@ -14,6 +14,7 @@
 - name: Pick correct {{ php_extension_configuration }} extension ini file
   set_fact:
     php_extension_ini_file: "{{ item.stat.path }}"
+    php_extension_ini_file_mode: "{{ item.stat.mode }}"
   with_items:
     "{{ php_extenstion_ini_file_candidates.results }}"
   when:
@@ -27,5 +28,6 @@
     option: "{{ item.key }}"
     value: "{{ item.value }}"
     state: present
+    mode: "{{ php_extension_ini_file_mode }}"
   with_dict:
     "{{ php_extensions_configuration[php_extension_configuration] }}"

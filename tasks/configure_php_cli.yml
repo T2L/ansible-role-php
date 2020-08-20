@@ -1,5 +1,12 @@
 ---
 # Configure PHP CLI.
+- name: Get /etc/php/{{ php_version }}/cli/php.ini permissions
+  stat:
+    path: /etc/php/{{ php_version }}/cli/php.ini
+    get_checksum: false
+    get_mime: false
+  register: php_ini_stat
+
 - name: Configure PHP CLI, section {{ php_cli_configuration_section }}
   ini_file:
     dest: /etc/php/{{ php_version }}/cli/php.ini
@@ -7,5 +14,6 @@
     option: "{{ item.key }}"
     value: "{{ item.value }}"
     state: present
+    mode: "{{ php_ini_stat.stat.mode }}"
   with_dict:
     "{{ php_cli_configuration[php_cli_configuration_section] }}"
