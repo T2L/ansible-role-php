@@ -10,6 +10,10 @@
         state: directory
         mode: 0777
 
+    - name: Update apt cache
+      apt:
+        update_cache: true
+
   roles:
     - ansible-role-php
 
