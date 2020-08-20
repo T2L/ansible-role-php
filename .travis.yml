@@ -23,31 +23,31 @@ jobs:
 
       python: 3.6
 
-      env: MOLECULE_PLATFORM=ubuntu:16.04 ANSIBLE_VERSION=2.8.* PHP_VERSION=7.2
+      env: MOLECULE_PLATFORM=ubuntu:16.04 ANSIBLE_VERSION=2.8 PHP_VERSION=7.2
+
+      before_install:
+        - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+        - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+        - sudo apt-get update
+        - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
 
       install:
-        - pip install ansible==${ANSIBLE_VERSION} ansible-lint docker molecule==3.*
+        - pip install ansible~=${ANSIBLE_VERSION} ansible-lint docker molecule~=3.0.8
 
       script:
         - molecule test
 
     - <<: *Test
 
-      name: Ubuntu 16.04 / Ansible 2.8 / PHP 7.3
+      name: Ubuntu 18.04 / Ansible 2.9 / PHP 7.3
 
-      env: MOLECULE_PLATFORM=ubuntu:16.04 ANSIBLE_VERSION=2.8.* PHP_VERSION=7.3
-
-    - <<: *Test
-
-      name: Ubuntu 18.04 / Ansible 2.9 / PHP 7.4
-
-      env: MOLECULE_PLATFORM=ubuntu:18.04 ANSIBLE_VERSION=2.9.* PHP_VERSION=7.4
+      env: MOLECULE_PLATFORM=ubuntu:18.04 ANSIBLE_VERSION=2.9 PHP_VERSION=7.3
 
     - <<: *Test
 
-      name: Ubuntu 20.04 / Ansible 2.9 / PHP 7.4
+      name: Ubuntu 20.04 / Ansible 2.10 / PHP 7.4
 
-      env: MOLECULE_PLATFORM=ubuntu:20.04 ANSIBLE_VERSION=2.9.* PHP_VERSION=7.4
+      env: MOLECULE_PLATFORM=ubuntu:20.04 ANSIBLE_VERSION=2.10.0a1 PHP_VERSION=7.4
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
