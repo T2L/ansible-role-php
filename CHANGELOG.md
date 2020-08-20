@@ -1,4 +1,4 @@
-## Ansible Role: PHP
+## Ansible Role: PHP 1.3.1, 2020-08-20
 
 - [#18](https://github.com/T2L/ansible-role-php/issues/18) - Address newly introduced Ansible Lint "[208] File permissions not mentioned" message. Update Travis configuration (new Ansible version)
 
