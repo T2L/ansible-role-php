@@ -15,7 +15,7 @@
         update_cache: true
 
   roles:
-    - ansible-role-php
+    - t2l.php
 
   vars:
     ansible_python_interpreter: /usr/bin/python3
