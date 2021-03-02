@@ -20,8 +20,10 @@
   vars:
     ansible_python_interpreter: /usr/bin/python3
     php_extensions:
-      - json
+      - gd
+      - mysql
       - xdebug
+      - zip
     php_configuration:
       Date:
         date.timezone: Europe/Kiev
@@ -32,4 +34,5 @@
         date.timezone: Europe/Kiev
     php_extensions_configuration:
       xdebug:
-        xdebug.remote_enable: 'On'
+        xdebug.mode: debug
+        xdebug.discover_client_host: true
