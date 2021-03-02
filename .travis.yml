@@ -23,7 +23,7 @@ jobs:
 
       python: 3.6
 
-      env: MOLECULE_PLATFORM=ubuntu:16.04 ANSIBLE_VERSION=2.8 PHP_VERSION=5.6
+      env: MOLECULE_PLATFORM=ubuntu:16.04 ANSIBLE_VERSION=2.8.0 PHP_VERSION=5.6
 
       before_install:
         - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -45,13 +45,13 @@ jobs:
 
       name: Ubuntu 18.04 / Ansible 2.9 / PHP 7.3
 
-      env: MOLECULE_PLATFORM=ubuntu:18.04 ANSIBLE_VERSION=2.9 PHP_VERSION=7.3
+      env: MOLECULE_PLATFORM=ubuntu:18.04 ANSIBLE_VERSION=2.9.0 PHP_VERSION=7.3
 
     - <<: *Test
 
       name: Ubuntu 20.04 / Ansible 2.10 / PHP 8.0
 
-      env: MOLECULE_PLATFORM=ubuntu:20.04 ANSIBLE_VERSION=2.10 PHP_VERSION=8.0
+      env: MOLECULE_PLATFORM=ubuntu:20.04 ANSIBLE_VERSION=2.10.0 PHP_VERSION=8.0
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
