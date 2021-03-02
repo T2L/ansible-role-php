@@ -1,7 +1,7 @@
 ---
 # PHP version to install. Only supported PHP versions for the supported Ubuntu
 # releases can be specified.
-php_version: '7.3'
+php_version: '7.4'
 
 # PHP extensions to install.
 php_extensions: []
