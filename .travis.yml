@@ -34,6 +34,10 @@ jobs:
       install:
         - pip install ansible~=${ANSIBLE_VERSION} ansible-lint docker molecule~=3.2 molecule-docker
 
+      before_script:
+        - mkdir -p ~/.ansible/roles
+        - ln -s `pwd` ~/.ansible/roles/t2l.php
+
       script:
         - molecule test
 
