@@ -51,7 +51,7 @@ Example:
       ldap:
         ldap.max_links: 5
       xdebug:
-        xdebug.remote_enable: 'On'
+        xdebug.mode: 'debug'
 
 Web server daemon. Will be restarted when change in configuration is detected. Defaults to Apache 2:
 
@@ -69,7 +69,7 @@ None.
 
     - hosts: all
       roles:
-        - T2L.php
+        - t2l.php
 
 ## License
 
@@ -77,7 +77,7 @@ MIT
 
 ## Author Information
 
-This role was created in 2017-2020 by Roman Paska.
+This role was created in 2017-2021 by Roman Paska.
 
 ## Changelog
 
