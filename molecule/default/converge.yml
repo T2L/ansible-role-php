@@ -35,4 +35,4 @@
     php_extensions_configuration:
       xdebug:
         xdebug.mode: debug
-        xdebug.discover_client_host: true
+        xdebug.discover_client_host: 'true'
