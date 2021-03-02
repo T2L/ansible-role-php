@@ -1,4 +1,4 @@
-## Ansible Role: PHP (Unreleased)
+## Ansible Role: PHP 1.4.0, 2021-03-02
 
 - Bump the default PHP version to 7.4
 - [#19](https://github.com/T2L/ansible-role-php/issues/19) - Make Travis CI happy again (improve testing setup)
