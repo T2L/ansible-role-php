@@ -1,6 +1,7 @@
 ---
 galaxy_info:
-  author: Roman Paska
+  role_name: php
+  author: t2l
   description: Install PHP.
   company: Lemberg Solutions
   license: MIT
@@ -10,6 +11,7 @@ galaxy_info:
       versions:
         - xenial
         - bionic
+        - focal
   galaxy_tags:
     - development
     - web

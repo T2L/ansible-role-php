@@ -21,5 +21,7 @@
   apache2_module:
     name: php{{ php_version }}
     state: present
+  when:
+    php_apache2_version.stdout and php_apache2_version.stdout != php_version | string
   notify:
     - Restart web server
