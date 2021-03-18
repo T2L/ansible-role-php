@@ -1,3 +1,7 @@
+## Ansible Role: PHP (Unreleased)
+
+- Explicitly require yamllint on Travis CI
+
 ## Ansible Role: PHP 1.4.0, 2021-03-02
 
 - Bump the default PHP version to 7.4
