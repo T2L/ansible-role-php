@@ -13,6 +13,7 @@
     - name: Update apt cache
       apt:
         update_cache: true
+        cache_valid_time: 180
 
   roles:
     - t2l.php

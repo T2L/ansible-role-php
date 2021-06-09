@@ -14,7 +14,7 @@ jobs:
   include:
     - &Test
 
-      name: Ubuntu 16.04 / Ansible 2.9 / PHP 5.6
+      name: Ubuntu 18.04 / Ansible 2.10 / PHP 5.6
 
       os: linux
 
@@ -27,7 +27,7 @@ jobs:
 
       python: 3.8
 
-      env: MOLECULE_PLATFORM=ubuntu:16.04 ANSIBLE_VERSION=2.9.0 PHP_VERSION=5.6
+      env: MOLECULE_PLATFORM=ubuntu:18.04 ANSIBLE_VERSION=2.10.0 PHP_VERSION=5.6
 
       before_install:
         - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -36,7 +36,7 @@ jobs:
         - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
 
       install:
-        - pip install ansible~=${ANSIBLE_VERSION} ansible-lint yamllint docker molecule~=3.2 molecule-docker
+        - pip install ansible~=${ANSIBLE_VERSION} ansible-lint yamllint docker molecule molecule-docker
 
       before_script:
         - mkdir -p ~/.ansible/roles
@@ -47,15 +47,15 @@ jobs:
 
     - <<: *Test
 
-      name: Ubuntu 18.04 / Ansible 2.10 / PHP 7.4
+      name: Ubuntu 18.04 / Ansible 3.4 / PHP 7.4
 
-      env: MOLECULE_PLATFORM=ubuntu:18.04 ANSIBLE_VERSION=2.10.0 PHP_VERSION=7.4
+      env: MOLECULE_PLATFORM=ubuntu:18.04 ANSIBLE_VERSION=3.4.0 PHP_VERSION=7.4
 
     - <<: *Test
 
       name: Ubuntu 20.04 / Ansible (latest) / PHP 8.0
 
-      env: MOLECULE_PLATFORM=ubuntu:20.04 ANSIBLE_VERSION=2.10.0 PHP_VERSION=8.0
+      env: MOLECULE_PLATFORM=ubuntu:20.04 PHP_VERSION=8.0
 
       install:
         - pip install ansible ansible-lint yamllint docker molecule molecule-docker
