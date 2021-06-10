@@ -1,5 +1,6 @@
 ## Ansible Role: PHP (Unreleased)
 
+- [#22](https://github.com/T2L/ansible-role-php/issues/22) - Drop Ubuntu 16.04 support
 - Explicitly require yamllint on Travis CI
 
 ## Ansible Role: PHP 1.4.0, 2021-03-02

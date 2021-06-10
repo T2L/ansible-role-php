@@ -5,11 +5,10 @@ galaxy_info:
   description: Install PHP.
   company: Lemberg Solutions
   license: MIT
-  min_ansible_version: 2.0
+  min_ansible_version: 2.10
   platforms:
     - name: Ubuntu
       versions:
-        - xenial
         - bionic
         - focal
   galaxy_tags:

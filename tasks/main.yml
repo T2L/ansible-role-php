@@ -1,12 +1,19 @@
 ---
-# Ensure base packages are present.
+- name: Check if 'software-properties-common' package exists
+  command: apt search software-properties-common
+  register: software_properties_common_exists
+  changed_when: false
+
+- name: Update apt cache
+  apt:
+    update_cache: true
+  when: "'software-properties-common' not in software_properties_common_exists.stdout"
+
 - name: Install base packages
   apt:
     name:
       - software-properties-common
     state: present
-    update_cache: true
-    cache_valid_time: 86400
 
 # Add the main PPA for PHP. See https://launchpad.net/~ondrej/+archive/ubuntu/php
 - name: Add the main PPA for PHP
