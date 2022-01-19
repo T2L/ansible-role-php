@@ -14,7 +14,7 @@ on:
 
 jobs:
   molecule:
-    name: Ubuntu ${{ matrix.molecule-platform }} / Ansible ${{ matrix.ansible-version }} / PHP ${{ matrix.php-version }}
+    name: Ubuntu ${{ matrix.ubuntu-version }} / Ansible ${{ matrix.ansible-version }} / PHP ${{ matrix.php-version }}
 
     runs-on: ubuntu-latest
 
@@ -27,14 +27,14 @@ jobs:
     strategy:
       matrix:
         include:
-          - molecule-platform: ubuntu:18.04
+          - ubuntu-version: '18.04'
             ansible-version: '2.10.0'
             php-version: '5.6'
-          - molecule-platform: ubuntu:20.04
-            ansible-version: '4.*'
+          - ubuntu-version: '20.04'
+            ansible-versios: '4.*'
             php-version: '7.4'
-          - molecule-platform: ubuntu:20.04
-            ansible-version: '*'
+          - ubuntu-version: '20.04'
+            ansible-version: '5.*'
             php-version: '8.1'
         python-version:
           - '3.9'
@@ -71,4 +71,4 @@ jobs:
       - name: Run Molecule tests
         run: molecule test
         env:
-          MOLECULE_PLATFORM: ${{ matrix.molecule-platform }}
+          MOLECULE_PLATFORM: ubuntu:${{ matrix.ubuntu-version }}
