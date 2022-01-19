@@ -28,13 +28,13 @@ jobs:
       matrix:
         include:
           - molecule-platform: ubuntu:18.04
-            ansible-version: 2.10.0
+            ansible-version: '2.10.0'
             php-version: '5.6'
           - molecule-platform: ubuntu:20.04
-            ansible-version: 4.*
+            ansible-version: '4.*'
             php-version: '7.4'
           - molecule-platform: ubuntu:20.04
-            ansible-version: *
+            ansible-version: '*'
             php-version: '8.1'
         python-version:
           - '3.9'
