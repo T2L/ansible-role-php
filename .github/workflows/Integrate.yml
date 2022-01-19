@@ -26,10 +26,10 @@ jobs:
 
     strategy:
       matrix:
-        ansible-version: []
-        php-version: []
+        ansible-version: ['']
+        php-version: ['']
         python-version: ['3.9']
-        ubuntu-version: []
+        ubuntu-version: ['']
         include:
           - ubuntu-version: '18.04'
             ansible-version: '3.*'
