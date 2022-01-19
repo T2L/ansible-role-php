@@ -34,7 +34,7 @@ jobs:
             ansible-versios: '4.*'
             php-version: '7.4'
           - ubuntu-version: '20.04'
-            ansible-version: '5.*'
+            ansible-version: '*'
             php-version: '8.1'
         python-version:
           - '3.9'
@@ -57,16 +57,16 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ steps.pip-cache.outputs.dir }}
-          key: ${{ runner.os }}-pip-${{ matrix.ansible_version }}
+          key: ${{ runner.os }}-pip-${{ matrix.ansible-version }}
 
       - name: Cache Python environment
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ env.pythonLocation }}-${{ matrix.ansible_version }}
+          key: ${{ env.pythonLocation }}-${{ matrix.ansible-version }}
 
       - name: Install Molecule and it's dependencies
-        run: pip install --upgrade --upgrade-strategy eager ansible~=${{ matrix.ansible_version }} ansible-lint yamllint docker molecule molecule-docker
+        run: pip install --upgrade --upgrade-strategy eager ansible~=${{ matrix.ansible-version }} ansible-lint yamllint docker molecule molecule-docker
 
       - name: Run Molecule tests
         run: molecule test
