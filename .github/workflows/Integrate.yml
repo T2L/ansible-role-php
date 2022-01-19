@@ -1,0 +1,74 @@
+---
+name: Integrate
+
+# yamllint disable-line rule:truthy
+on:
+  pull_request:
+  push:
+    branches:
+      - 1.x.x
+    tags:
+  # Run every night at 05:15.
+  schedule:
+    - cron: '15 5 * * *'
+
+jobs:
+  molecule:
+    name: Ubuntu ${{ matrix.molecule-platform }} / Ansible ${{ matrix.ansible-version }} / PHP ${{ matrix.php-version }}
+
+    runs-on: ubuntu-latest
+
+    # Workaround 'XXX may have been in progress in another thread when fork()
+    # was called.'
+    # See https://github.com/ansible/ansible/issues/32499
+    env:
+      OBJC_DISABLE_INITIALIZE_FORK_SAFETY: 'YES'
+
+    strategy:
+      matrix:
+        include:
+          - molecule-platform: ubuntu:18.04
+            ansible-version: 2.10.0
+            php-version: '5.6'
+          - molecule-platform: ubuntu:20.04
+            ansible-version: 4.*
+            php-version: '7.4'
+          - molecule-platform: ubuntu:20.04
+            ansible-version: *
+            php-version: '8.1'
+        python-version:
+          - '3.9'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Get PiP Cache Directory
+        id: pip-cache
+        run: |
+          echo "::set-output name=dir::$(pip cache dir)"
+
+      - name: Cache PiP dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.pip-cache.outputs.dir }}
+          key: ${{ runner.os }}-pip-${{ matrix.ansible_version }}
+
+      - name: Cache Python environment
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.pythonLocation }}
+          key: ${{ env.pythonLocation }}-${{ matrix.ansible_version }}
+
+      - name: Install Molecule and it's dependencies
+        run: pip install --upgrade --upgrade-strategy eager ansible~=${{ matrix.ansible_version }} ansible-lint yamllint docker molecule molecule-docker
+
+      - name: Run Molecule tests
+        run: molecule test
+        env:
+          MOLECULE_PLATFORM: ${{ matrix.molecule-platform }}
