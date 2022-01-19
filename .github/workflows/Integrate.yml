@@ -68,6 +68,11 @@ jobs:
       - name: Install Molecule and it's dependencies
         run: pip install --upgrade --upgrade-strategy eager ansible==${{ matrix.ansible-version }} ansible-lint yamllint docker molecule molecule-docker
 
+      - name: Ensure that Ansible can actually find the role
+        run: |
+          mkdir -p ~/.ansible/roles
+          ln -s `pwd` ~/.ansible/roles/t2l.php
+
       - name: Run Molecule tests
         run: molecule test
         env:
