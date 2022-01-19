@@ -26,10 +26,6 @@ jobs:
 
     strategy:
       matrix:
-        ansible-version: ['']
-        php-version: ['']
-        python-version: ['3.9']
-        ubuntu-version: ['']
         include:
           - ubuntu-version: '18.04'
             ansible-version: '3.*'
@@ -48,7 +44,7 @@ jobs:
       - name: Install Python
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: '3.9'
 
       - name: Get PiP Cache Directory
         id: pip-cache
