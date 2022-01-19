@@ -28,7 +28,7 @@ jobs:
       matrix:
         include:
           - ubuntu-version: '18.04'
-            ansible-version: '3.*'
+            ansible-version: '4.*'
             php-version: '5.6'
           - ubuntu-version: '20.04'
             ansible-version: '4.*'
