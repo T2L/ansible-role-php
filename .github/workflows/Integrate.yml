@@ -28,7 +28,7 @@ jobs:
       matrix:
         include:
           - ubuntu-version: '18.04'
-            ansible-version: '2.10.0'
+            ansible-version: '3.*'
             php-version: '5.6'
           - ubuntu-version: '20.04'
             ansible-versios: '4.*'
@@ -66,7 +66,7 @@ jobs:
           key: ${{ env.pythonLocation }}-${{ matrix.ansible-version }}
 
       - name: Install Molecule and it's dependencies
-        run: pip install --upgrade --upgrade-strategy eager ansible~=${{ matrix.ansible-version }} ansible-lint yamllint docker molecule molecule-docker
+        run: pip install --upgrade --upgrade-strategy eager ansible==${{ matrix.ansible-version }} ansible-lint yamllint docker molecule molecule-docker
 
       - name: Run Molecule tests
         run: molecule test
