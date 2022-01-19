@@ -77,3 +77,4 @@ jobs:
         run: molecule test
         env:
           MOLECULE_PLATFORM: ubuntu:${{ matrix.ubuntu-version }}
+          PHP_VERSION: ${{ matrix.php-version }}
