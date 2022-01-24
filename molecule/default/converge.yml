@@ -18,6 +18,7 @@
     php_extensions:
       - gd
       - mysql
+      - sodium
       - xdebug
       - zip
     php_configuration:

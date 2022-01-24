@@ -38,16 +38,38 @@
     name: php
     path: "/usr/bin/php{{ php_version }}"
 
-- name: Generate list of PHP extensions names to install
-  command: "echo php{{ php_version }}-{{ item }}"
-  register: php_extenstions_names
-  loop: "{{ php_extensions | flatten(levels=1) }}"
+# By default, php extensions come as phpVERSION-EXTENSION, but some omit the
+# VERSION part, i.e. use php-EXTENSION.
+- name: Check whether the package with a default name exists
+  command: "aptitude search '^php{{ php_version }}-{{ item }}$'"
+  register: php_extenstions_default_names_exist
+  loop: "{{ php_extensions }}"
+  changed_when: false
+  failed_when: php_extenstions_default_names_exist.stderr | length > 0
+
+- name: Generate list of PHP extensions names to install (with PHP version)
+  set_fact:
+    php_extenstions_names:
+      "{{ php_extenstions_names | default([]) + ['php' + php_version | string + '-' + item.item] }}"
+  loop: "{{ php_extenstions_default_names_exist.results }}"
+  when: item.rc == 0
+  loop_control:
+    label: "{{ item.item }}"
+  changed_when: false
+
+- name: Generate list of PHP extensions names to install (no PHP version)
+  set_fact:
+    php_extenstions_names: "{{ php_extenstions_names | default([]) + ['php-' + item.item] }}"
+  loop: "{{ php_extenstions_default_names_exist.results }}"
+  when: item.rc == 1
+  loop_control:
+    label: "{{ item.item }}"
   changed_when: false
 
 # Install PHP extensions.
 - name: Install PHP extensions
   apt:
-    name: "{{ php_extenstions_names.results | map(attribute='stdout') | list }}"
+    name: "{{ php_extenstions_names | list }}"
     state: present
   notify:
     - Restart web server
