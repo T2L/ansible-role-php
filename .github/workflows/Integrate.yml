@@ -33,7 +33,7 @@ jobs:
           - ubuntu-version: '20.04'
             ansible-version: '4.*'
             php-version: '7.4'
-          - ubuntu-version: '20.04'
+          - ubuntu-version: '22.04'
             ansible-version: '5.*'
             php-version: '8.1'
 
