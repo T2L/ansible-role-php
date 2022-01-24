@@ -76,26 +76,26 @@
     - Restart web server
 
 # Configure Apache2 web server.
-- import_tasks: configure_apache2.yml
+- include_tasks: configure_apache2.yml
   when:
     php_web_server_daemon == "apache2"
 
 # Configure PHP.
-- import_tasks: configure_php.yml
+- include_tasks: configure_php.yml
   with_items:
     "{{ php_configuration }}"
   loop_control:
     loop_var: php_configuration_section
 
 # Configure PHP CLI.
-- import_tasks: configure_php_cli.yml
+- include_tasks: configure_php_cli.yml
   with_items:
     "{{ php_cli_configuration }}"
   loop_control:
     loop_var: php_cli_configuration_section
 
 # Configure PHP extensions.
-- import_tasks: configure_php_extensions.yml
+- include_tasks: configure_php_extensions.yml
   with_items:
     "{{ php_extensions_configuration }}"
   loop_control:
