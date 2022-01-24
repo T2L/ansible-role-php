@@ -15,8 +15,10 @@
   set_fact:
     php_extension_ini_file: "{{ item.stat.path }}"
     php_extension_ini_file_mode: "{{ item.stat.mode }}"
-  with_items:
+  loop:
     "{{ php_extenstion_ini_file_candidates.results }}"
+  loop_control:
+    label: "{{ item.item }}-{{ php_extension_configuration }}.ini"
   when:
     item.stat | default(false) and item.stat.exists
 
