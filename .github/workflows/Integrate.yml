@@ -76,3 +76,5 @@ jobs:
         env:
           MOLECULE_PLATFORM: ubuntu:${{ matrix.ubuntu-version }}
           PHP_VERSION: ${{ matrix.php-version }}
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
