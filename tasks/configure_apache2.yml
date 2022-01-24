@@ -9,19 +9,25 @@
     executable: /bin/bash
   register: php_apache2_version
   changed_when: false
+  failed_when: php_apache2_version.stderr | length > 0
 
 - name: Disable the current PHP version for Apache2 (if exists)
-  apache2_module:
-    name: php{{ php_apache2_version.stdout }}
-    state: absent
+  command: "a2dismod php{{ item }}"
+  register: a2dismod_cmd
+  loop: "{{ php_apache2_version.stdout_lines }}"
   when:
-    php_apache2_version.stdout and php_apache2_version.stdout != php_version | string
+    item != php_version | string
+  changed_when: '"To activate the new configuration" in a2dismod_cmd.stdout'
+  failed_when: '"ERROR" in a2dismod_cmd.stderr'
+  notify:
+    - Restart web server
 
 - name: Enable a new PHP version for Apache2
-  apache2_module:
-    name: php{{ php_version }}
-    state: present
+  command: "a2enmod php{{ php_version }}"
+  register: a2enmod_cmd
   when:
-    php_apache2_version.stdout and php_apache2_version.stdout != php_version | string
+    php_apache2_version.stdout != php_version | string
+  changed_when: '"To activate the new configuration" in a2enmod_cmd.stdout'
+  failed_when: '"ERROR" in a2enmod_cmd.stderr'
   notify:
     - Restart web server

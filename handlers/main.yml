@@ -4,5 +4,6 @@
   service:
     name: "{{ php_web_server_daemon }}"
     state: restarted
+    use: service
   when:
     php_restart_web_server and php_web_server_daemon
