@@ -5,7 +5,7 @@ galaxy_info:
   description: Install PHP.
   company: Lemberg Solutions
   license: MIT
-  min_ansible_version: 2.10
+  min_ansible_version: '2.10'
   platforms:
     - name: Ubuntu
       versions:

@@ -1,24 +1,24 @@
 ---
 - name: Check if 'software-properties-common' package exists
-  command: "aptitude search '^software-properties-common$'"
+  ansible.builtin.command: "aptitude search '^software-properties-common$'"
   register: software_properties_common_exists
   changed_when: false
   failed_when: software_properties_common_exists.stderr | length > 0
 
 - name: Update apt cache
-  apt:
+  ansible.builtin.apt:
     update_cache: true
   when: software_properties_common_exists.rc != 0
 
 - name: Install base packages
-  apt:
+  ansible.builtin.apt:
     name:
       - software-properties-common
     state: present
 
 # Add the main PPA for PHP. See https://launchpad.net/~ondrej/+archive/ubuntu/php
 - name: Add the main PPA for PHP
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: ppa:ondrej/php
     state: present
     update_cache: true
@@ -26,7 +26,7 @@
 
 # Install PHP.
 - name: Install PHP
-  apt:
+  ansible.builtin.apt:
     name: php{{ php_version }}
     state: present
     update_cache: true
@@ -35,21 +35,21 @@
     - Restart web server
 
 - name: Set default PHP version for the CLI
-  alternatives:
+  ansible.builtin.alternatives:
     name: php
     path: "/usr/bin/php{{ php_version }}"
 
 # By default, php extensions come as phpVERSION-EXTENSION, but some omit the
 # VERSION part, i.e. use php-EXTENSION.
 - name: Check whether the package with a default name exists
-  command: "aptitude search '^php{{ php_version }}-{{ item }}$'"
+  ansible.builtin.command: "aptitude search '^php{{ php_version }}-{{ item }}$'"
   register: php_extenstions_default_names_exist
   loop: "{{ php_extensions }}"
   changed_when: false
   failed_when: php_extenstions_default_names_exist.stderr | length > 0
 
 - name: Generate list of PHP extensions names to install (with PHP version)
-  set_fact:
+  ansible.builtin.set_fact:
     php_extenstions_names:
       "{{ php_extenstions_names | default([]) + ['php' + php_version | string + '-' + item.item] }}"
   loop: "{{ php_extenstions_default_names_exist.results }}"
@@ -59,7 +59,7 @@
   changed_when: false
 
 - name: Generate list of PHP extensions names to install (no PHP version)
-  set_fact:
+  ansible.builtin.set_fact:
     php_extenstions_names: "{{ php_extenstions_names | default([]) + ['php-' + item.item] }}"
   loop: "{{ php_extenstions_default_names_exist.results }}"
   when: item.rc == 1
@@ -69,7 +69,7 @@
 
 # Install PHP extensions.
 - name: Install PHP extensions
-  apt:
+  ansible.builtin.apt:
     name: "{{ php_extenstions_names | list }}"
     state: present
   notify:

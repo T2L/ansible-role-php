@@ -1,14 +1,14 @@
 ---
 # Configure PHP CLI.
 - name: Get /etc/php/{{ php_version }}/cli/php.ini permissions
-  stat:
+  ansible.builtin.stat:
     path: /etc/php/{{ php_version }}/cli/php.ini
     get_checksum: false
     get_mime: false
   register: php_ini_stat
 
 - name: Configure PHP CLI, section {{ php_cli_configuration_section }}
-  ini_file:
+  community.general.ini_file:
     dest: /etc/php/{{ php_version }}/cli/php.ini
     section: "{{ php_cli_configuration_section }}"
     option: "{{ item.key }}"

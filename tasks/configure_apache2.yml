@@ -1,6 +1,6 @@
 ---
 - name: Get the current PHP version for Apache2
-  shell: |
+  ansible.builtin.shell: |
     set -o pipefail
     ls /etc/apache2/mods-enabled/ |
     grep -oP 'php(\d\.\d)\.load' |
@@ -12,7 +12,7 @@
   failed_when: php_apache2_version.stderr | length > 0
 
 - name: Disable the current PHP version for Apache2 (if exists)
-  command: "a2dismod php{{ item }}"
+  ansible.builtin.command: "a2dismod php{{ item }}"
   register: a2dismod_cmd
   loop: "{{ php_apache2_version.stdout_lines }}"
   when:
@@ -23,7 +23,7 @@
     - Restart web server
 
 - name: Enable a new PHP version for Apache2
-  command: "a2enmod php{{ php_version }}"
+  ansible.builtin.command: "a2enmod php{{ php_version }}"
   register: a2enmod_cmd
   when:
     php_apache2_version.stdout != php_version | string

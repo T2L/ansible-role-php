@@ -5,7 +5,7 @@
   pre_tasks:
 
     - name: Ensure Ansible temp directory exists
-      file:
+      ansible.builtin.file:
         path: /tmp/ansible
         state: directory
         mode: 0777
