@@ -1,4 +1,4 @@
-## Ansible Role: PHP 1.x.x (Unreleased)
+## Ansible Role: PHP 1.6.2, 2022-07-25
 
 - Install `aptitude` if not available, fixing issue `The task includes an option with an undefined variable. The error was: 'php_extenstions_names' is undefined`s
 
