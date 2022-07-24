@@ -13,6 +13,7 @@
 - name: Install base packages
   ansible.builtin.apt:
     name:
+      - aptitude
       - software-properties-common
     state: present
 
@@ -48,10 +49,14 @@
   changed_when: false
   failed_when: php_extenstions_default_names_exist.stderr | length > 0
 
+- name: Prepare PHP extensions names variable
+  ansible.builtin.set_fact:
+    php_extenstions_names: []
+
 - name: Generate list of PHP extensions names to install (with PHP version)
   ansible.builtin.set_fact:
     php_extenstions_names:
-      "{{ php_extenstions_names | default([]) + ['php' + php_version | string + '-' + item.item] }}"
+      "{{ php_extenstions_names + ['php' + php_version | string + '-' + item.item] }}"
   loop: "{{ php_extenstions_default_names_exist.results }}"
   when: item.rc == 0
   loop_control:
@@ -60,7 +65,7 @@
 
 - name: Generate list of PHP extensions names to install (no PHP version)
   ansible.builtin.set_fact:
-    php_extenstions_names: "{{ php_extenstions_names | default([]) + ['php-' + item.item] }}"
+    php_extenstions_names: "{{ php_extenstions_names + ['php-' + item.item] }}"
   loop: "{{ php_extenstions_default_names_exist.results }}"
   when: item.rc == 1
   loop_control:

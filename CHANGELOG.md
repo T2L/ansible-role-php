@@ -1,3 +1,7 @@
+## Ansible Role: PHP 1.x.x (Unreleased)
+
+- Install `aptitude` if not available, fixing issue `The task includes an option with an undefined variable. The error was: 'php_extenstions_names' is undefined`s
+
 ## Ansible Role: PHP 1.5.0, 2021-06-10
 
 - [#22](https://github.com/T2L/ansible-role-php/issues/22) - Drop Ubuntu 16.04 support
